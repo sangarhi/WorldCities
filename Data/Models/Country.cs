@@ -1,7 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WorldCities.Data.Models
 {
+    [Table("Countries")]
     public class Country
     {
         #region Constructor
@@ -29,6 +32,12 @@ namespace WorldCities.Data.Models
         /// </summary>
         public string ISO3 { get; set; }
         #endregion
+        #region Navigation Properties
+        /// <summary>
+        /// A list containing all the cities related to this country.
+        /// </summary>
+        public virtual List<City> Cities { get; set; }
+        #endregion
     }
 }
-}
+
