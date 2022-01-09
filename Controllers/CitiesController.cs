@@ -19,10 +19,22 @@ namespace WorldCities.Controllers
             _context = context;
         }
         // GET: api/Cities
+        // GET: api/Cities/?pageIndex=0&pageSize=10
+        // GET: api/Cities/?pageIndex=0&pageSize=10&sortColumn=name&
+        // GET: api/Cities/?pageIndex=0&pageSize=10&sortColumn=name&sortOrder=asc&filterColumn=name&filterQuery=york
+        //  sortOrder=asc
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<City>>> GetCities()
+        //[Route("{pageIndex}/{pageSize}")]
+        public async Task<ActionResult<ApiResult<City>>> GetCities(int pageIndex = 0, int pageSize = 10, string sortColumn = null, string sortOrder = null, string filterColumn = null, string filterQuery = null)
         {
-            return await _context.Cities.ToListAsync();
+            // first we perform the filtering...
+            //var cities = _context.Cities;
+            //if (!string.IsNullOrEmpty(filterColumn) && !string.IsNullOrEmpty(filterQuery))
+            //{
+            //    cities = (DbSet<City>)cities.Where(c => c.Name.Contains(filterQuery));
+            //}
+            // ... and then we call the ApiResult
+            return await ApiResult<City>.CreateAsync(_context.Cities, pageIndex, pageSize, sortColumn, sortOrder, filterColumn, filterQuery);
         }
         // GET: api/Cities/5
         [HttpGet("{id}")]
