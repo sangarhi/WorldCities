@@ -36,6 +36,12 @@ namespace WorldCities.Controllers
             // ... and then we call the ApiResult
             return await ApiResult<City>.CreateAsync(_context.Cities, pageIndex, pageSize, sortColumn, sortOrder, filterColumn, filterQuery);
         }
+
+        [HttpGet("/tabla")]
+        public IEnumerable<City> getAll()
+        {
+            return _context.Cities;
+        }
         // GET: api/Cities/5
         [HttpGet("{id}")]
         public async Task<ActionResult<City>> GetCity(int id)

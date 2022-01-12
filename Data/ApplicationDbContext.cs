@@ -13,5 +13,6 @@ namespace WorldCities.Data
         }
         public DbSet<City> Cities { get; set; }
         public DbSet<Country> Countries { get; set; }
+        public DbSet<Usuario> Usuarios { get; set; }
     }
 }

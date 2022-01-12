@@ -1,0 +1,28 @@
+<div class="container">
+    <br />
+    <div class="row">
+      <div class="col">
+        <h3>Usuarios</h3>
+      </div>
+    </div>
+    <br />
+    <table class="table table-bordered table-sm">
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Apellido</th>
+        <th>Email</th>
+        <th>Género</th>
+      </tr>
+      <tr *ngFor="let user of usuariosList">
+        <td>{{ user.id }}</td>
+        <td>{{ user.nombre }}</td>
+        <td>{{ user.apellido }}</td>
+        <td>
+            <input (keyup)="onChangeEvent($event, user.id)" type="text" value="{{ user.email }}">
+        </td>
+        <td>{{ user.genero }}</td>
+      </tr>
+    </table>
+  </div>
+  
